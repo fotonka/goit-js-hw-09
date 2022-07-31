@@ -2,9 +2,11 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
 const startBtn = document.querySelector('button[data-start]');
-const DISABLE_CLASS = 'disabled';
+startBtn.addEventListener('click', onClick);
 let choosedDate = null;
 const today = new Date();
+
+startBtn.setAttribute('disabled', true);
 
 const timer = {
   days: document.querySelector('[data-days]'),
@@ -20,31 +22,22 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     choosedDate = selectedDates[0].getTime();
-    const deltaDate = choosedDate - Date.now();
+    startBtn.removeAttribute('disabled');
+
     if (today > selectedDates[0]) {
       window.alert('Please choose a date in the future');
     }
-    startBtn.classList.remove(DISABLE_CLASS);
 
     return choosedDate;
   },
 };
 
 flatpickr('#datetime-picker', options);
-const inputDate = document.querySelector('#datetime-picker')._flatpickr;
 
-startBtn.addEventListener('click', onClickStartCount);
-
-function onClickStartCount(event) {
-  if (event.target.classList.contains(DISABLE_CLASS)) {
-    return;
-  }
-
+function onClick(event) {
   let timerId = null;
 
   timerId = setInterval(() => {
-    startBtn.classList.remove(DISABLE_CLASS);
-
     const deltaTime = choosedDate - Date.now();
 
     const { days, hours, minutes, seconds } = convertMs(deltaTime);
@@ -56,7 +49,6 @@ function onClickStartCount(event) {
 }
 
 function convertMs(ms) {
-  // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
