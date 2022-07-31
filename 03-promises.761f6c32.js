@@ -1,0 +1,2 @@
+const e=document.querySelector(".form"),t=document.querySelector("button");e.firstElementChild,e.children[1],e.children[2];function n(e,t){return new Promise(((n,o)=>{const r=Math.random()>.3;setTimeout((()=>{r&&n(`✅ Fulfilled promise ${e} in ${t}ms`),o(`❌ Rejected promise ${e} in ${t}ms`)}),t)}))}t.addEventListener("submit",n),n().then((e=>console.log(e))).catch((e=>console.log(e)));
+//# sourceMappingURL=03-promises.761f6c32.js.map
