@@ -24,8 +24,9 @@ const options = {
     choosedDate = selectedDates[0].getTime();
     startBtn.removeAttribute('disabled');
 
-    if (today > selectedDates[0]) {
+    if (today > choosedDate) {
       window.alert('Please choose a date in the future');
+      startBtn.setAttribute('disabled', true);
     }
 
     return choosedDate;
