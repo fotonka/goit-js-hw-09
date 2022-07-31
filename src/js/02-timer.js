@@ -1,7 +1,7 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
-const startBtn = document.querySelector('button[data-start]');
+const startBtn = document.querySelector('[data-start]');
 startBtn.addEventListener('click', onClick);
 let choosedDate = null;
 const today = new Date();
