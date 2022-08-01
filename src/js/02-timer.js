@@ -27,6 +27,7 @@ const options = {
     if (today > choosedDate) {
       window.alert('Please choose a date in the future');
       startBtn.setAttribute('disabled', true);
+      location.reload();
     }
 
     return choosedDate;
